@@ -19,6 +19,7 @@ def mark_done(index):
         return True
     return False
 
+#видалити задачу
 def delete_task(index):
     if 0 <= index < len(tasks):
         return tasks.pop(index)
@@ -34,6 +35,7 @@ def show_menu():
     print("5. Вийти")
     print("==========================")
 
+#показати задачі
 def show_tasks():
     if not tasks:
         print("Список задач порожній.")
