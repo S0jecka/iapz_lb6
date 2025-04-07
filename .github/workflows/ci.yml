@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
     - name: Run tests
-      run: pytest —junitxml=report.xml
+      run: pytest --junitxml=report.xml
   analysis:
     runs-on: ubuntu-latest
     needs: test
