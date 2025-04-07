@@ -1,5 +1,27 @@
+# task_manager.py
+
 tasks = []
 
+def add_task(text):
+    task = {"text": text, "done": False}
+    tasks.append(task)
+    return task
+
+def list_tasks():
+    return tasks
+
+def mark_done(index):
+    if 0 <= index < len(tasks):
+        tasks[index]["done"] = True
+        return True
+    return False
+
+def delete_task(index):
+    if 0 <= index < len(tasks):
+        return tasks.pop(index)
+    return None
+
+# нижче — тільки консольний інтерфейс, який не треба тестити
 def show_menu():
     print("\n===== Менеджер задач =====")
     print("1. Додати задачу")
@@ -9,11 +31,6 @@ def show_menu():
     print("5. Вийти")
     print("==========================")
 
-def add_task():
-    task = input("Введи задачу: ")
-    tasks.append({"text": task, "done": False})
-    print("Задачу додано!")
-
 def show_tasks():
     if not tasks:
         print("Список задач порожній.")
@@ -22,36 +39,37 @@ def show_tasks():
         status = "✅" if task["done"] else "❌"
         print(f"{i}. {status} {task['text']}")
 
-def mark_done():
-    show_tasks()
-    try:
-        index = int(input("Введи номер задачі для відзначення як виконаної: ")) - 1
-        tasks[index]["done"] = True
-        print("Готово!")
-    except (IndexError, ValueError):
-        print("Неправильний номер.")
-
-def delete_task():
-    show_tasks()
-    try:
-        index = int(input("Введи номер задачі для видалення: ")) - 1
-        deleted = tasks.pop(index)
-        print(f"Задачу '{deleted['text']}' видалено.")
-    except (IndexError, ValueError):
-        print("Неправильний номер.")
-
 def main():
     while True:
         show_menu()
         choice = input("Обери опцію (1-5): ")
         if choice == "1":
-            add_task()
+            text = input("Введи задачу: ")
+            add_task(text)
+            print("Задачу додано!")
         elif choice == "2":
             show_tasks()
         elif choice == "3":
-            mark_done()
+            show_tasks()
+            try:
+                index = int(input("Номер задачі: ")) - 1
+                if mark_done(index):
+                    print("Задачу відзначено як виконану ✅")
+                else:
+                    print("Невірний номер")
+            except ValueError:
+                print("Це не число.")
         elif choice == "4":
-            delete_task()
+            show_tasks()
+            try:
+                index = int(input("Номер задачі: ")) - 1
+                deleted = delete_task(index)
+                if deleted:
+                    print(f"Задачу '{deleted['text']}' видалено.")
+                else:
+                    print("Невірний номер.")
+            except ValueError:
+                print("Це не число.")
         elif choice == "5":
             print("До зустрічі 👋")
             break
