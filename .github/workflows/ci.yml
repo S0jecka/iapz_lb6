@@ -41,19 +41,21 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const prNumber = context.payload.pull_request?.number;
+            const prNumber = context.payload.pull_request.number;
             if (!prNumber) {
-              throw new Error("Pull request number not found. Ensure the event is a pull request.");
+            console.log('No pull request found.');
+            return;
             }
             const { data: reviews } = await github.pulls.listReviews({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: prNumber,
+              pull_number: prNumber
             });
             const approved = reviews.some(review => review.state === 'APPROVED');
             if (!approved) {
               core.setFailed("Код-рев’ю не схвалено");
             }
+    
 
       - name: Count lines of code with Cloc
         run: |
