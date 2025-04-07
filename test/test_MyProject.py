@@ -36,5 +36,5 @@ def test_delete_task():
     assert len(MyProject.tasks) == 0
 
 def test_delete_task_invalid_index():
-    deleted = task_manager.delete_task(999)
+    deleted = MyProject.delete_task(999)
     assert deleted is None
