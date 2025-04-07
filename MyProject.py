@@ -20,7 +20,6 @@ def delete_task(index):
         return tasks.pop(index)
     return None
 
-# нижче — тільки консольний інтерфейс, який не треба тестити
 def show_menu():
     print("\n===== Менеджер задач =====")
     print("1. Додати задачу")
