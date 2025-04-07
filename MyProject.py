@@ -2,14 +2,17 @@
 
 tasks = []
 
+#додати задачу
 def add_task(text):
     task = {"text": text, "done": False}
     tasks.append(task)
     return task
-
+    
+#список задач
 def list_tasks():
     return tasks
 
+#позначити задачу виконаною
 def mark_done(index):
     if 0 <= index < len(tasks):
         tasks[index]["done"] = True
