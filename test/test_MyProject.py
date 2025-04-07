@@ -1,5 +1,5 @@
-from MyProject import *
 
+from MyProject import *
 
 def setup_function():
     # Очистити список задач перед кожним тестом
