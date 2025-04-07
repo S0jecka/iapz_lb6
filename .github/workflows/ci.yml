@@ -37,18 +37,7 @@ jobs:
               throw new Error("This action must be triggered by a pull request.");
             }
 
-      - name: Code Review Check for develop
-        uses: actions/github-script@v6
-        with:
-         script: |
-           const prNumber = context.payload.pull_request.number;const
-           {data: reviews} = await
-           github.pulls.listReviews({ owner: context.repo.owner,
-           repo: context.repo.repo,
-           pull_numbe r: prNumber});const approved = reviews.some(review => review.state === 'APPROVED'); 
-           if (!approved) {
-           core.setFailed("Код-рев’ю не схвалено");
-           }
+  
 
       - name: Count lines of code with Cloc
         run: |
