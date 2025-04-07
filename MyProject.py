@@ -14,7 +14,7 @@ def mark_done(index):
         tasks[index]["done"] = True
         return True
     return False
-
+#видалити задачу
 def delete_task(index):
     if 0 <= index < len(tasks):
         return tasks.pop(index)
