@@ -37,8 +37,6 @@ jobs:
               throw new Error("This action must be triggered by a pull request.");
             }
 
-
-
       - name: Count lines of code with Cloc
         run: |
           sudo apt-get install -y cloc
