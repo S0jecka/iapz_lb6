@@ -32,3 +32,12 @@ jobs:
           github.pulls.listReviews({ owner: context.repo.owner,
           repo: context.repo.repo,
           pull_number: prNumber}); const approved = reviews.some(review => review.state === 'APPROVED'); if (!approved) { core.setFailed("Код-рев’ю не схвалено");}
+      - name: Count lines of code with Cloc
+        run: |
+          sudo apt-get install -y cloc
+          cloc src/ > cloc-report.txt
+          cat cloc-report.txt
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
