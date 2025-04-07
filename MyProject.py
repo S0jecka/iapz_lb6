@@ -1,25 +1,20 @@
 # task_manager.py
-
 tasks = []
 
-#додати задачу
 def add_task(text):
     task = {"text": text, "done": False}
     tasks.append(task)
     return task
     
-#список задач
 def list_tasks():
     return tasks
 
-#позначити задачу виконаною
 def mark_done(index):
     if 0 <= index < len(tasks):
         tasks[index]["done"] = True
         return True
     return False
 
-#видалити задачу
 def delete_task(index):
     if 0 <= index < len(tasks):
         return tasks.pop(index)
@@ -35,7 +30,6 @@ def show_menu():
     print("5. Вийти")
     print("==========================")
 
-#показати задачі
 def show_tasks():
     if not tasks:
         print("Список задач порожній.")
